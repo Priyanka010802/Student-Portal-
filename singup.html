@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Portal - Signup</title>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+
+
+  <style>
+
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 0;
+    }
+
+    /* Decorative floating circles */
+    .decor-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.3;
+      z-index: 0;
+      animation: float 6s infinite ease-in-out alternate;
+    }
+
+
+    .decor-circle.c1 { width: 180px; height: 180px; top: 5%; left: 5%; background: #20c997; }
+    .decor-circle.c2 { width: 120px; height: 120px; bottom: 10%; right: 10%; background: #0dcaf0; }
+    .decor-circle.c3 { width: 220px; height: 220px; top: 25%; right: 45%; background: #6f42c1; }
+
+
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-20px) translateX(15px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    /* Grid container */
+    .signup-container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 90%;
+      max-width: 1200px;
+      gap: 50px;
+      min-height: 600px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    /* Left Panel */
+    .left-panel {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      text-align: left;
+      padding-left: 30px;
+    }
+    .left-panel img {
+      width: 120px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 5px 12px rgba(0,0,0,0.5));
+    }
+    .left-panel h2 {
+      font-size: 2.7rem;
+      font-weight: 800;
+    }
+    .left-panel p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .feature {
+      display: flex;
+      align-items: center;
+      font-size: 1.05rem;
+      gap: 12px;
+    }
+    .feature i {
+      color: #ffd966;
+      font-size: 1.3rem;
+    }
+
+    /* Right Panel - Circular Signup */
+    .right-panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .signup-card {
+      width: 550px;
+      height: 550px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transition: transform 0.6s ease;
+    }
+    .signup-card:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+    .signup-card h3 {
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    form {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .input-group {
+      width: 100%;
+    }
+    .form-control {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 0 12px rgba(32,201,151,0.8);
+      outline: none;
+    }
+    .form-control::placeholder { color: #eee; }
+    .input-group-text {
+      background: transparent;
+      border: none;
+      color: #fff;
+    }
+
+    .btn-signup {
+      background: linear-gradient(135deg, #20c997, #0dcaf0, #6f42c1);
+      border: none;
+      border-radius: 50px;
+      padding: 12px 0;
+      width: 100%;
+      font-weight: 600;
+      color: #fff;
+      font-size: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn-signup:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    .text-center {
+      margin-top: 10px;
+    }
+    .text-center a {
+      color: #ffd966;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .text-center a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* Responsive */
+    @media (max-width: 950px) {
+      .signup-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .left-panel { padding-left: 0; }
+      .signup-card { width: 350px; height: 350px; }
+      .feature { justify-content: center; }
+    }
+
+
+
+  </style>
+
+
+</head>
+<body>
+
+
+  <!-- Decorative circles -->
+  <div class="decor-circle c1"></div>
+  <div class="decor-circle c2"></div>
+  <div class="decor-circle c3"></div>
+
+  <!-- Grid container -->
+  <div class="signup-container">
+
+
+    <!-- Left Panel -->
+    <div class="left-panel" data-aos="fade-right">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Student Logo">
+      <h2>Join Student Portal 🎓</h2>
+      <p>Explore premium courses, track progress, and grow your IT skills efficiently.</p>
+      <div class="feature"><i class="fa-solid fa-book-open"></i> Premium Courses</div>
+      <div class="feature"><i class="fa-solid fa-chart-line"></i> Progress Tracking</div>
+      <div class="feature"><i class="fa-solid fa-bolt"></i> Fast Skill Growth</div>
+      <div class="feature"><i class="fa-solid fa-users"></i> Community Support</div>
+    </div>
+
+
+    <!-- Right Panel -->
+    <div class="right-panel" data-aos="fade-left">
+      <div class="signup-card" data-aos="zoom-in">
+        <h3>Create Account</h3>
+        <form onsubmit="validateSignup(event)">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+            <input type="text" id="signupName" class="form-control" placeholder="Your Name">
+          </div>
+          <div class="invalid-feedback" id="signupNameError"></div>
+
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+            <input type="email" id="signupEmail" class="form-control" placeholder="Your Email">
+          </div>
+          <div class="invalid-feedback" id="signupEmailError"></div>
+
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+            <input type="password" id="signupPassword" class="form-control" placeholder="Password">
+          </div>
+          <div class="invalid-feedback" id="signupPasswordError"></div>
+
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-check"></i></span>
+            <input type="password" id="signupConfirmPassword" class="form-control" placeholder="Confirm Password">
+          </div>
+          <div class="invalid-feedback" id="signupConfirmPasswordError"></div>
+
+          <button type="submit" class="btn-signup" data-aos="zoom-in-up">Sign Up</button>
+          <p class="text-center"> <strong style="color: azure;"> Already have an account? </strong> <a href="login.html">Login</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- AOS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+
+  <script>
+    AOS.init({ duration: 1200, once: true });
+
+    function showError(id, msg) {
+      let i = document.getElementById(id), e = document.getElementById(id + "Error");
+      i.classList.add("is-invalid"); e.textContent = msg;
+    }
+    function clearError(id) {
+      let i = document.getElementById(id), e = document.getElementById(id + "Error");
+      i.classList.remove("is-invalid"); e.textContent = "";
+    }
+    function validateSignup(e) {
+      e.preventDefault();
+      let n = document.getElementById("signupName").value.trim(),
+          em = document.getElementById("signupEmail").value.trim(),
+          p = document.getElementById("signupPassword").value,
+          cp = document.getElementById("signupConfirmPassword").value,
+          valid = true;
+
+          localStorage.setItem("userEmail", em);
+         localStorage.setItem("userPassword", p);
+
+
+      if (n === "") { showError("signupName","Name required"); valid=false; } else clearError("signupName");
+      if (!/^[^ ]+@[^ ]+\.[a-z]{2,}$/.test(em)) { showError("signupEmail","Invalid email"); valid=false; } else clearError("signupEmail");
+      if (p.length < 6) { showError("signupPassword","Min 6 characters"); valid=false; } else clearError("signupPassword");
+      if (p !== cp) { showError("signupConfirmPassword","Passwords do not match"); valid=false; } else clearError("signupConfirmPassword");
+
+      if (valid) {
+         localStorage.setItem("userName", n);
+        localStorage.setItem("userEmail", em);
+        localStorage.setItem("userPassword", p);
+        alert("✅ Signup successful! Please login.");
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+
+
+
+</body>
+</html>
